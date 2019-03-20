@@ -1,0 +1,35 @@
+body{
+    background-image: url("../images/gravel.png");
+}
+
+.container{
+    background-image: url("../images/gravel2.png");
+    color: #fff;
+}
+
+.btn {
+    float: left;
+    margin: 5px;
+}
+
+.gif {
+    float: left;
+    margin: 10px;
+}
+
+#input-text {
+    float: left;
+    margin: 10px;
+}
+
+.athlete-image:hover {
+    cursor: pointer;
+}
+
+.title {
+    margin-top: 5px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
