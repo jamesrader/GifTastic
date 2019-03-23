@@ -1,9 +1,9 @@
 body{
-    background-image: url("../images/gravel.png");
+    background-image: url("../images/Sports1.png");
 }
 
 .container{
-    background-image: url("../images/gravel2.png");
+    background-color:rgba(100, 100, 100, .2);
     color: #fff;
 }
 
@@ -12,9 +12,18 @@ body{
     margin: 5px;
 }
 
+.btn:last-of-type {
+    margin-bottom: 20px;
+}
+
 .gif {
     float: left;
-    margin: 10px;
+    margin: 10px 0px 10px 10px;
+    padding-right: 0px;
+    padding-left: -10px;
+    border-style: solid;
+    border-color: #555;
+    border-width: 1px;
 }
 
 #input-text {
@@ -22,14 +31,70 @@ body{
     margin: 10px;
 }
 
+.display-3 {
+    color: rgb(0, 195, 255);
+    font-size: 7vw;
+    margin-left: .2em;
+    letter-spacing: .1em;
+}
+
 .athlete-image:hover {
     cursor: pointer;
 }
 
 .title {
-    margin-top: 5px;
+    margin: 5px;
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.rating{
+    margin: 5px;
+}
+
+.custom-menu {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid #CCC;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background: #FFF;
+    color: #333;
+    border-radius: 5px;
+    padding: 0;
+}
+
+.custom-menu li {
+    padding: 8px 12px;
+    cursor: pointer;
+    list-style-type: none;
+    transition: all .3s ease;
+    user-select: none;
+}
+
+.custom-menu li:hover {
+    background-color: #DEF;
+}
+
+#heart-image {
+    width: 20px;
+    margin-top: 5px;
+}
+
+#favorites-button {
+    color: #ff89da;
+    border-color: #ff89da;
+}
+
+#favorites-button:hover {
+    background-color: #ff89da;
+    color: #fff;
+}
+
+#favorites-button:focus, #favorites-button:active {
+    box-shadow: 0px 0px 1px 3px rgba(255, 137, 218,.5)
 }
