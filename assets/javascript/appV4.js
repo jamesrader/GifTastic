@@ -10,6 +10,7 @@ $(document).ready(function () {
     var viewingFavorites = false;
 
     function getTopics() {
+        console.log(localStorage.getItem("first-run"));
 
         //If "first-run" key IS NOT found in local storage, supply a list of default buttons (topics)
         if (localStorage.getItem("first-run") === null) {
@@ -85,6 +86,7 @@ $(document).ready(function () {
         favButton.attr("class", "btn btn-outline-warning");
         favButton.attr("id", "favorites-button");
         favButton.text("Favorites");
+        console.log(favoritesArray.length);
         if (favoritesArray.length === 0) {
             favButton.attr("disabled", true);
         } else {
@@ -95,6 +97,7 @@ $(document).ready(function () {
         $("#favorites-button").on("click", function () {
             var queryURL = "https://api.giphy.com/v1/gifs?api_key=AVrHPINB2p0cWyUj0OMmSBq2EIcXOWl6&ids=" +
                 favoritesArray.join(", ");
+            console.log(queryURL);
             ajaxCall(queryURL);
             viewingFavorites = true;
         })
@@ -119,6 +122,7 @@ $(document).ready(function () {
             athlete = athlete.split(" ").join("+");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
                 athlete + "+sports" + "&api_key=AVrHPINB2p0cWyUj0OMmSBq2EIcXOWl6&rating=pg&limit=" + limit;
+            console.log(queryURL);
             ajaxCall(queryURL);
             viewingFavorites = false;
         });
@@ -131,6 +135,8 @@ $(document).ready(function () {
             method: "GET"
         })
             .then(function (response) {
+                console.log(response);
+                //results = response.data;
                 var responseData = response.data;
                 buildButtons(responseData);
 
@@ -153,6 +159,7 @@ $(document).ready(function () {
             athleteImage.attr("class", "athlete-image");
 
             athleteImage.on("click", function () {
+                console.log("clicked");
                 if (isLooping) {
                     $(this).attr("src", ($(this).attr("data-still-url")));
                     isLooping = false;
@@ -173,6 +180,7 @@ $(document).ready(function () {
             div1.attr("data-toggle", "tooltip");
             div1.attr("data-placement", "bottom");
             div1.attr("title", title);
+            console.log(imageWidth);
 
             var rating = results[i].rating;
             var div2 = $("<div>").text("Rating: " + rating);
@@ -198,8 +206,10 @@ $(document).ready(function () {
                 if ($(this).attr("data-heart") === "empty") {
                     $(this).attr("src", "assets/images/heart-filled.png");
                     $(this).attr("data-heart", "filled");
+                    console.log(results[i]);
                     favoritesArray.push($(this).attr("data-id"));
                     $("#favorites-button").attr("disabled", false);
+                    console.log(favoritesArray);
                 } else {
 
                     //Switch from solid to outline heart image
@@ -221,6 +231,7 @@ $(document).ready(function () {
                     //If we are in the Favorites category, remove the image from the DOM
                     if (viewingFavorites){
                         thisButton.remove();
+                        console.log(thisButton);
                     }
                 }
 
@@ -260,6 +271,38 @@ $(document).ready(function () {
                 });
 
             rightClickButton = ($(event.target).text());
+            
+            /* var mouseIn = {"athlete-button":true, "custom-menu":false}
+            var triggerItem = "";
+            $(".athlete-button, .custom-menu").mouseenter(function(){
+                if ($(this).hasClass("athlete-button")){
+                    triggerItem = "athlete-button";
+                } else {
+                    triggerItem = "custom-menu"
+                }
+                mouseIn[triggerItem] = true;
+                //console.log($(this).attr("id"));
+                console.log(mouseIn);
+                //alert("Leaving!");
+                //$(".custom-menu").hide(100);
+            })
+            .mouseleave(function(){
+                //$(".athlete-button, .custom-menu").mouseleave(function(){
+                    if ($(this).hasClass("athlete-button")){
+                        triggerItem = "athlete-button";
+                    } else {
+                        triggerItem = "custom-menu"
+                    }
+                mouseIn[triggerItem] = false;
+                //console.log($(this).attr("id"));
+                console.log(mouseIn);
+                if (mouseIn["athlete-button"] === false && mouseIn["custom-menu"] === false){
+
+                    setTimeout(function(){
+                    $(".custom-menu").hide(100);
+                    },100);
+                }
+            }); */
         }
     });
 
