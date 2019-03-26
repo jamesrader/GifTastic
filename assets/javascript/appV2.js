@@ -57,8 +57,11 @@ $(document).ready(function () {
         }
         $("#favoritesArea").append(favButton);
 
-        $("#favoritesAres").on("click", function(){
-
+        $("#favorites-button").on("click", function(){
+            alert("Favorites!");
+            for (i=0; i<favoritesArray.length; i++){
+                
+            }
         })
 
 
@@ -88,8 +91,19 @@ $(document).ready(function () {
             })
                 .then(function (response) {
                     console.log(response);
-                    results = response.data;
-                    $("#gifsArea").html("");
+                    //results = response.data;
+                    var responseData = response.data;
+                    buildButtons(responseData);
+
+                    
+                });
+        });
+
+    }
+
+
+    function buildButtons (results){
+    $("#gifsArea").html("");
                     for (var i = 0; i < results.length; i++) {
                         var gifDiv = $("<div>");
                         gifDiv.attr("class", "gif");
@@ -181,10 +195,8 @@ $(document).ready(function () {
                         }
 
                     }
-                });
-        });
+                }
 
-    }
 
     // Trigger action when the contexmenu is about to be shown
     $(document).bind("contextmenu", function (event) {
